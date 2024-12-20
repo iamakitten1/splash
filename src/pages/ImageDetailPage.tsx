@@ -1,13 +1,14 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { fetchPhotos } from '../api/unsplashApi';
+// import { fetchPhotos } from '../api/unsplashApi';
+import { fetchPhotoDetails } from '../api/fetchPhotoDetails';
 
 const ImageDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
 
   const { data: photo, isLoading } = useQuery(['photo', id], () =>
-    fetchPhotos(1).then((photos) => photos.find((p: any) => p.id === id))
+    fetchPhotoDetails(1).then((photos) => photos.find((p: any) => p.id === id))
   );
 
   if (isLoading) return <p>Loading...</p>;

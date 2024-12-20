@@ -1,34 +1,43 @@
 import React, { useState } from 'react';
-import { useQuery } from '@tanstack/react-query'; 
+import { useQuery } from '@tanstack/react-query';
 import { fetchPhotos } from '../api/unsplashApi';
-import { useDebounce } from '../hooks/useDebounce'; 
+import { useDebounce } from '../hooks/useDebounce';
 import ImageList from '../components/ImageList';
-import SearchBar from '../components/SearchBar'; 
-import Pagination from '../components/Pagination'; 
+import Pagination from '../components/Pagination';
 
-const HomePage: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+interface HomePageProps {
+  searchTerm: string;
+}
+
+const HomePage: React.FC<HomePageProps> = ({ searchTerm }) => {
   const [page, setPage] = useState(1);
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
- 
-  const { data: photos, isLoading } = useQuery({
-    queryKey: ['photos', page, debouncedSearchTerm], 
+  const { data: photos, isLoading, isError, error } = useQuery({
+    queryKey: ['photos', page, debouncedSearchTerm],
     queryFn: () => fetchPhotos(page, debouncedSearchTerm),
-    keepPreviousData: true, 
+    keepPreviousData: true, // Keeps previous data while new data is loading
   });
 
   return (
     <div className="p-4">
-      <SearchBar value={searchTerm} onChange={setSearchTerm} />
       {isLoading ? (
-        <p>Loading...</p> 
+        <p className="text-center text-gray-500">Loading...</p>
+      ) : isError ? (
+        <p className="text-center text-red-500">Error: {(error as Error).message}</p>
       ) : (
-        <ImageList photos={photos || []} onPhotoClick={function (_id: string): void {
-                      throw new Error('Function not implemented.');
-                  } } /> 
+        <div className="space-y-4">
+          <ImageList
+            photos={photos || []}
+            onPhotoClick={(id: string) => window.location.href = `/photo/${id}`} // Navigate to the photo page
+          />
+        </div>
       )}
-      <Pagination currentPage={page} onPageChange={setPage} /> 
+      <Pagination
+        currentPage={page}
+        onPageChange={setPage}
+        className="mt-4 flex justify-center "
+      />
     </div>
   );
 };
