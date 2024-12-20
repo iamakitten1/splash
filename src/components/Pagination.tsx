@@ -6,18 +6,18 @@ interface Props {
 }
 
 const Pagination: React.FC<Props> = ({ currentPage, onPageChange }) => (
-  <div className="flex justify-center mt-4">
+  <div className="flex justify-center items-center mt-6 space-x-4">
     <button
       onClick={() => onPageChange(currentPage - 1)}
       disabled={currentPage === 1}
-      className="px-4 py-2 bg-gray-300 rounded mx-2 disabled:opacity-50"
+      className="px-6 py-3 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition-all disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed"
     >
       Prev
     </button>
-    <span className="px-4 py-2">{currentPage}</span>
+    <span className="text-lg font-semibold text-gray-700">{currentPage}</span>
     <button
       onClick={() => onPageChange(currentPage + 1)}
-      className="px-4 py-2 bg-gray-300 rounded mx-2"
+      className="px-6 py-3 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition-all"
     >
       Next
     </button>
