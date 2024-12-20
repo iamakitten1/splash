@@ -1,3 +1,5 @@
+import React from 'react';
+
 interface ImageListProps {
   photos: Array<{ id: string; urls: { thumb: string } }>;
   onPhotoClick: (id: string) => void;
@@ -9,7 +11,7 @@ const ImageList: React.FC<ImageListProps> = ({ photos, onPhotoClick }) => {
       {photos.map((photo) => (
         <div
           key={photo.id}
-          className="relative cursor-pointer overflow-hidden rounded-lg shadow-lg transition-transform transform hover:scale-105 "
+          className="relative cursor-pointer overflow-hidden rounded-lg shadow-lg transition-transform transform hover:scale-105"
           onClick={() => onPhotoClick(photo.id)}
         >
           <img

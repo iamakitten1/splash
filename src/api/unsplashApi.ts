@@ -10,12 +10,17 @@ export const unsplashApi = axios.create({
   },
 });
 
-
+// Fetch all photos
 export const fetchPhotos = async (page: number, query?: string) => {
-  const params: any = { per_page: 20, page };
+  const params: any = { per_page: 12, page };
   if (query) params.query = query;
-
   const endpoint = query ? '/search/photos' : '/photos';
   const response = await unsplashApi.get(endpoint, { params });
   return query ? response.data.results : response.data;
+};
+
+// Fetch a single photo
+export const fetchPhotoDetails = async (id: string) => {
+  const response = await unsplashApi.get(`/photos/${id}`);
+  return response.data;
 };
