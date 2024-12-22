@@ -21,7 +21,7 @@ const Navbar: React.FC<NavbarProps> = ({ searchTerm, setSearchTerm }) => {
 
     window.addEventListener('scroll', handleScroll);
 
-   
+    // Cleanup event listener on component unmount
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -31,7 +31,7 @@ const Navbar: React.FC<NavbarProps> = ({ searchTerm, setSearchTerm }) => {
     <nav
       className={`${
         isScrolled ? 'bg-green-300' : 'bg-green-500'
-      } text-[grey] p-4 shadow-lg rounded-b-lg fixed top-0 left-0 w-full z-50 flex justify-between items-center transition-all duration-300`}
+      } text-grey p-4 shadow-lg rounded-b-lg fixed top-0 left-0 w-full z-50 flex justify-between items-center transition-all duration-300`}
     >
       <ul className="flex space-x-8">
         <li>
@@ -43,12 +43,12 @@ const Navbar: React.FC<NavbarProps> = ({ searchTerm, setSearchTerm }) => {
           </Link>
         </li>
         <li>
-          <Link
+          {/* <Link
             to="/photo"
             className="hover:text-yellow-300 transition duration-300 ease-in-out font-semibold"
           >
             Photos
-          </Link>
+          </Link> */}
         </li>
       </ul>
       

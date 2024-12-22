@@ -6,7 +6,7 @@ import Navbar from './components/Navbar';
 import PhotoPage from './pages/PhotoPage';
 // import ImageDetailPage from './pages/ImageDetailPage';
 
-// Create a QueryClient instance
+
 const queryClient = new QueryClient();
 
 const App: React.FC = () => {
@@ -17,13 +17,14 @@ const App: React.FC = () => {
       <Router>
         <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/photo/:id" element={<PhotoPage />} />
-          {/* <Link to={`/photo/${photoId}`}>View Photo</Link> */}
+          <Route path="/" element={<HomePage  />} />
+          <Route path="/photo/:id" element={<PhotoPage />} />
+        {/* <Link to={`/photo/${photoId}`}>View Photo</Link> */}
+
         </Routes>
       </Router>
     </QueryClientProvider>
   );
 };
 
-export default App;
+export default App; 

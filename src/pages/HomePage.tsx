@@ -10,7 +10,7 @@ const HomePage: React.FC = () => {
   const { data: photos, isLoading, isError, error } = useQuery({
     queryKey: ['photos', page],
     queryFn: () => fetchPhotos(page),
-    keepPreviousData: true,
+    // keepPreviousData: true,
   });
 
   return (
