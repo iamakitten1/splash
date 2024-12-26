@@ -23,7 +23,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ value, onChange }) => {
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         placeholder="Search photos..."
-        className="p-2 border rounded-md transform -translate-y-1/2 text-gray-500 "
+        className="p-2 border rounded-md  text-gray-500 "
         aria-label="Search for photos"
       />
     </div>
